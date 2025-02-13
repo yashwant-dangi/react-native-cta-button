@@ -10,15 +10,17 @@ npm install react-native-cta-button
 
 ## Usage
 
+<p align="center">
+<img src="./readme_assets//Screen Recording 2025-02-13 at 7.45.14 PM.gif" width="300">
+</p>
 
 ```js
-import { multiply } from 'react-native-cta-button';
+import { Button as CTAButton } from 'react-native-cta-button';
 
 // ...
 
-const result = await multiply(3, 7);
+<CTAButton>
 ```
-
 
 ## Contributing
 
