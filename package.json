@@ -88,7 +88,8 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-linear-gradient": "^2.8.3"
   },
   "workspaces": [
     "example"
@@ -173,7 +174,6 @@
       [
         "typescript",
         {
-          "project": "tsconfig.build.json",
           "esm": true
         }
       ]
@@ -183,5 +183,6 @@
     "languages": "js",
     "type": "library",
     "version": "0.48.1"
-  }
+  },
+  "types": "./lib/typescript/commonjs/src/index.d.ts"
 }

@@ -1,12 +1,11 @@
-import { multiply } from 'react-native-cta-button';
+import { Button } from 'react-native-cta-button';
 import { Text, View, StyleSheet } from 'react-native';
-
-const result = multiply(3, 7);
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>Text</Text>
+      <Button />
     </View>
   );
 }
