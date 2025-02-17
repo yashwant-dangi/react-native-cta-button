@@ -61,7 +61,7 @@
   },
   "homepage": "https://github.com/yashwant-dangi/react-native-cta-button#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "http://localhost:4873/"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",

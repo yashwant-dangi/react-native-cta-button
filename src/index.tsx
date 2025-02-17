@@ -6,13 +6,21 @@ import {
   Animated,
   Easing,
   Pressable,
+  type PressableProps,
+  type TextStyle,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 const color = `rgba(0, 0, 255, 1)`;
 const colorTransparentShade = `rgba(0, 0, 255, 0.40)`;
 
-export function Button() {
+interface ButtonProps extends PressableProps {
+  title: string;
+  textStyles?: TextStyle;
+}
+
+// eslint-disable-next-line prettier/prettier
+export function Button({ title = '', textStyles, ...rest }: ButtonProps) {
   const rotateValue = new Animated.Value(0);
 
   useEffect(() => {
@@ -41,7 +49,7 @@ export function Button() {
 
   return (
     <View>
-      <Pressable style={styles.pressable}>
+      <Pressable style={styles.pressable} {...rest}>
         <Animated.View style={[animatedStyle, styles.animatedView]}>
           <LinearGradient
             start={{ x: 0.4, y: 1 }}
@@ -51,7 +59,7 @@ export function Button() {
             style={styles.linearGradient}
           />
         </Animated.View>
-        <Text style={[styles.buttonText]}>checkout</Text>
+        <Text style={[styles.buttonText, textStyles]}>{title}</Text>
       </Pressable>
     </View>
   );
