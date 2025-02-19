@@ -1,6 +1,6 @@
 {
   "name": "react-native-cta-button",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A CTA (call-to-action) button with rotating border.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
