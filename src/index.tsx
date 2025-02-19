@@ -6,14 +6,39 @@ import {
   Animated,
   Easing,
   Pressable,
+  type PressableProps,
+  type ViewStyle,
+  type TextStyle,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-const color = `rgba(0, 0, 255, 1)`;
-const colorTransparentShade = `rgba(0, 0, 255, 0.40)`;
+// const color = `rgba(0, 0, 255, 1)`;
+// const colorTransparentShade = `rgba(0, 0, 255, 0.40)`;
 
-export function Button() {
+interface ButtonProps extends PressableProps {
+  title: string;
+  borderGradientColor?: [number, number, number, number];
+  viewStyles?: ViewStyle;
+  textStyles?: TextStyle;
+}
+
+export function Button({
+  title = 'button',
+  borderGradientColor,
+  textStyles,
+  viewStyles,
+  ...rest
+}: ButtonProps) {
   const rotateValue = new Animated.Value(0);
+
+  const r = borderGradientColor?.[0] || 0;
+  const g = borderGradientColor?.[1] || 0;
+  const b = borderGradientColor?.[2] || 255;
+  const a = borderGradientColor?.[3] || 1;
+  const aLight = borderGradientColor?.[3] || 0.4;
+
+  const color = `rgba(${r}, ${g}, ${b}, ${a})`;
+  const colorTransparentShade = `rgba(${r}, ${g}, ${b}, ${aLight})`;
 
   useEffect(() => {
     // Start the animation
@@ -39,9 +64,20 @@ export function Button() {
     transform: [{ rotate }],
   };
 
+  const pressableDefaultRadius = parseInt(
+    styles?.pressable?.borderRadius.toString(),
+    10
+  );
+
+  const customViewRadius =
+    parseInt(viewStyles?.borderRadius?.toString() || '', 10) || 0;
+
+  const textBorderRadius =
+    (customViewRadius || pressableDefaultRadius) - 1 || 4;
+
   return (
-    <View>
-      <Pressable style={styles.pressable}>
+    <View style={styles.view}>
+      <Pressable style={[styles.pressable, viewStyles]} {...rest}>
         <Animated.View style={[animatedStyle, styles.animatedView]}>
           <LinearGradient
             start={{ x: 0.4, y: 1 }}
@@ -51,13 +87,24 @@ export function Button() {
             style={styles.linearGradient}
           />
         </Animated.View>
-        <Text style={[styles.buttonText]}>checkout</Text>
+        <Text
+          style={[
+            styles.buttonText,
+            textStyles,
+            { borderRadius: textBorderRadius },
+          ]}
+        >
+          {title}
+        </Text>
       </Pressable>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  view: {
+    alignSelf: 'center',
+  },
   pressable: {
     padding: 1,
     justifyContent: 'center',

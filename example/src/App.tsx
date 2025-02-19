@@ -5,7 +5,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Text</Text>
-      <Button />
+      <Button title={'checkout'} />
     </View>
   );
 }
